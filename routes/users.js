@@ -42,14 +42,36 @@ router.post(
           name,
           email
         });
-        bcrypt.genSalt(10).then(salt =>
-          bcrypt.hash(password, salt).then(hashedPW => {
-            user.password = hashedPW;
-            user.save().then(() => res.send("User saved"));
-          })
-        );
+        bcrypt
+          .genSalt(10)
+          .then(salt =>
+            bcrypt
+              .hash(password, salt)
+              .then(hashedPW => {
+                user.password = hashedPW;
+                user
+                  .save()
+                  .then(() => res.send("User saved"))
+                  .catch(e => {
+                    console.log("Failed to save user");
+                    console.error(e.message);
+                    res.status(500).send("Server Error");
+                  });
+              })
+              .catch(e => {
+                console.log("Failed to hash password");
+                console.error(e.message);
+                res.status(500).send("Server Error");
+              })
+          )
+          .catch(e => {
+            console.log("Failed to generate salt");
+            console.error(e.message);
+            res.status(500).send("Server Error");
+          });
       })
       .catch(e => {
+        console.log("Failed to findOne");
         console.error(e.message);
         res.status(500).send("Server Error");
       });
