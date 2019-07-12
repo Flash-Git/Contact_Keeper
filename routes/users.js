@@ -54,28 +54,29 @@ router.post(
                   .then(() => res.send("User saved"))
                   .catch(e => {
                     console.log("Failed to save user");
-                    console.error(e.message);
-                    res.status(500).send("Server Error");
+                    serverError(e.message);
                   });
               })
               .catch(e => {
                 console.log("Failed to hash password");
-                console.error(e.message);
-                res.status(500).send("Server Error");
+                serverError(e.message);
               })
           )
           .catch(e => {
             console.log("Failed to generate salt");
-            console.error(e.message);
-            res.status(500).send("Server Error");
+            serverError(e.message);
           });
       })
       .catch(e => {
         console.log("Failed to findOne");
-        console.error(e.message);
-        res.status(500).send("Server Error");
+        serverError(e.message);
       });
   }
 );
+
+const serverError = e => {
+  console.error(e.message);
+  res.status(500).send("Server Error");
+};
 
 module.exports = router;
