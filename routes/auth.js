@@ -7,7 +7,7 @@ const config = require("config");
 
 const auth = require("../middleware/auth");
 const User = require("../models/User");
-const HandleErrors = require("./HandleErrors");
+const handleErrors = require("./handleErrors");
 
 // @route   GET api/auth
 // @desc    Get logged in user
@@ -32,7 +32,7 @@ router.post(
     check("password", "Please enter your password").exists()
   ],
   async (req, res) => {
-    HandleErrors(req, res);
+    handleErrors(req, res);
 
     const { email, password } = req.body;
 

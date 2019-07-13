@@ -4,7 +4,7 @@ const { check } = require("express-validator");
 
 const auth = require("../middleware/auth");
 const Contact = require("../models/Contact");
-const HandleErrors = require("./HandleErrors");
+const handleErrors = require("./handleErrors");
 
 // @route   GET api/contacts
 // @desc    Get all user's contacts
@@ -36,7 +36,7 @@ router.post(
     ]
   ],
   async (req, res) => {
-    HandleErrors(req, res);
+    handleErrors(req, res);
 
     const { name, email, phone, type } = req.body;
     try {

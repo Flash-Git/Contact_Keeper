@@ -6,7 +6,7 @@ const { check } = require("express-validator");
 const config = require("config");
 
 const User = require("../models/User");
-const HandleErrors = require("./HandleErrors");
+const handleErrors = require("./handleErrors");
 
 // @route   POST api/users
 // @desc    Register a users
@@ -26,7 +26,7 @@ router.post(
     })
   ],
   async (req, res) => {
-    HandleErrors(req, res);
+    handleErrors(req, res);
 
     const { name, email, password } = req.body;
 
