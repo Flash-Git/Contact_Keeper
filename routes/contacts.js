@@ -1,13 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const { check, validationResult } = require("express-validator");
-const config = require("config");
+const { check } = require("express-validator");
 
 const auth = require("../middleware/auth");
-const User = require("../models/User");
 const Contact = require("../models/Contact");
+const HandleErrors = require("./HandleErrors");
 
 // @route   GET api/contacts
 // @desc    Get all user's contacts
@@ -28,9 +25,36 @@ router.get("/", auth, async (req, res) => {
 // @route   POST api/contacts
 // @desc    Add new contact
 // @access  PRIVATE
-router.post("/", (req, res) => {
-  res.send("Add contact");
-});
+router.post(
+  "/",
+  [
+    auth,
+    [
+      check("name", "Please enter a name")
+        .not()
+        .isEmpty()
+    ]
+  ],
+  async (req, res) => {
+    HandleErrors(req, res);
+
+    const { name, email, phone, type } = req.body;
+    try {
+      const newContact = new Contact({
+        name,
+        email,
+        phone,
+        type,
+        user: req.user.id
+      });
+      const contact = await newContact.save();
+      res.json(contact);
+    } catch (e) {
+      console.error(e.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
 
 // @route   PUT api/contacts/:id
 // @desc    Update contact
