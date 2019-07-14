@@ -2,9 +2,11 @@ import React, { Fragment } from "react";
 
 const About = () => (
   <Fragment>
-    <h1>About this App</h1>
-    <p>App to search Github users</p>
-    <p>Version: 1.0.0</p>
+    <h1>About</h1>
+    <p className="my-1">Full stack React app for keeping contacts.</p>
+    <p className="bg-dark p">
+      <strong>Version: </strong> 1.0.0
+    </p>
   </Fragment>
 );
 
