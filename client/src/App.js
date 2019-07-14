@@ -5,6 +5,7 @@ import Navbar from "./components/layout/Navbar";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import NotFound from "./components/pages/NotFound";
+import ContactState from "./context/contact/ContactState";
 
 import "./App.css";
 
@@ -14,18 +15,20 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 library.add(faGithub);
 
 const App = () => (
-  <Router>
-    <Fragment>
-      <Navbar />
-      <div className="container">
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/About" component={About} />
-          <Route component={NotFound} />
-        </Switch>
-      </div>
-    </Fragment>
-  </Router>
+  <ContactState>
+    <Router>
+      <Fragment>
+        <Navbar />
+        <div className="container">
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/About" component={About} />
+            <Route component={NotFound} />
+          </Switch>
+        </div>
+      </Fragment>
+    </Router>
+  </ContactState>
 );
 
 export default App;
