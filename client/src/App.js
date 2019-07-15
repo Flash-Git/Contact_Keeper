@@ -6,6 +6,7 @@ import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import NotFound from "./components/pages/NotFound";
 import ContactState from "./context/contact/ContactState";
+import AuthState from "./context/auth/AuthState";
 
 import "./App.css";
 
@@ -16,20 +17,22 @@ import { faEnvelopeOpen, faPhone } from "@fortawesome/free-solid-svg-icons";
 library.add(faGithub, faEnvelopeOpen, faPhone);
 
 const App = () => (
-  <ContactState>
-    <Router>
-      <Fragment>
-        <Navbar />
-        <div className="container">
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/About" component={About} />
-            <Route component={NotFound} />
-          </Switch>
-        </div>
-      </Fragment>
-    </Router>
-  </ContactState>
+  <AuthState>
+    <ContactState>
+      <Router>
+        <Fragment>
+          <Navbar />
+          <div className="container">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/About" component={About} />
+              <Route component={NotFound} />
+            </Switch>
+          </div>
+        </Fragment>
+      </Router>
+    </ContactState>
+  </AuthState>
 );
 
 export default App;
