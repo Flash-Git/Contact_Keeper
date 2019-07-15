@@ -35,7 +35,7 @@ const ContactState = props => {
         name: "Fatty",
         email: "fatty@gmail.com",
         phone: "113",
-        type: "personal"
+        type: "professional"
       }
     ]
   };
