@@ -1,8 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ContactItem = ({ contact }) => {
-  const { id, name, email, phone, type } = contact;
+  const { name, email, phone, type } = contact;
   return (
     <div className="card bg-light">
       <h3 className="text-primary text-left">
@@ -24,9 +26,23 @@ const ContactItem = ({ contact }) => {
             &nbsp;{email}
           </li>
         )}
+        {phone && (
+          <li>
+            <FontAwesomeIcon icon={["fas", "phone"]} />
+            &nbsp;{phone}
+          </li>
+        )}
+        <p>
+          <button className="bt btn-dark btn-sm">Edit</button>
+          <button className="bt btn-danger btn-sm">Delete</button>
+        </p>
       </ul>
     </div>
   );
+};
+
+ContactItem.propTypes = {
+  contact: PropTypes.object.isRequired
 };
 
 export default ContactItem;
