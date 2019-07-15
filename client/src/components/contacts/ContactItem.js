@@ -16,7 +16,8 @@ const ContactItem = ({ contact }) => {
   const { id, name, email, phone, type } = contact;
 
   const onDelete = () => {
-    if (currentContact.id === contact.id) clearCurrentContact();
+    if (currentContact && currentContact.id === contact.id)
+      clearCurrentContact();
     deleteContact(id);
   };
 
