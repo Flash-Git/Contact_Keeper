@@ -1,5 +1,13 @@
 import React, { Fragment, useContext, useEffect } from "react";
+import Contacts from "../contacts/Contacts";
 
-const Home = () => <h1>Home</h1>;
+const Home = () => (
+  <div className="grid-2">
+    <div>{/* Contact Form */}</div>
+    <div>
+      <Contacts />
+    </div>
+  </div>
+);
 
 export default Home;
