@@ -11,9 +11,9 @@ import "./App.css";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelopeOpen } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelopeOpen, faPhone } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faGithub, faEnvelopeOpen);
+library.add(faGithub, faEnvelopeOpen, faPhone);
 
 const App = () => (
   <ContactState>
