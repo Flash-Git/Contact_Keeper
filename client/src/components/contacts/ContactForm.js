@@ -28,6 +28,7 @@ const ContactForm = () => {
     } else {
       setContact(emptyContact);
     }
+    //eslint-disable-next-line
   }, [currentContact]);
 
   //Input
