@@ -8,7 +8,7 @@ const Register = props => {
   const authContext = useContext(AuthContext);
 
   const { setAlert } = alertContext;
-  const { error, register, clearErrors, isAuthenticated } = authContext;
+  const { isAuthenticated, error, register, clearErrors } = authContext;
 
   const [user, setUser] = useState({
     name: "",
