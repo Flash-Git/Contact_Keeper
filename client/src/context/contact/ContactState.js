@@ -63,7 +63,14 @@ const ContactState = props => {
     dispatch({ type: UPDATE_CONTACT, payload: contact });
   };
 
-  const deleteContact = id => {
+  const deleteContact = async id => {
+    try {
+      await axios.delete(`/api/contacts/${id}`);
+      dispatch({ type: DELETE_CONTACT, payload: id });
+    } catch (e) {
+      dispatch({ type: CONTACT_ERROR, payload: e.response.msg });
+    }
+
     dispatch({ type: DELETE_CONTACT, payload: id });
   };
 
