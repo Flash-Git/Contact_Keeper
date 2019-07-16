@@ -11,7 +11,8 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGOUT
+  LOGOUT,
+  CLEAR_ERRORS
 } from "../types";
 
 const AuthState = props => {
@@ -46,16 +47,16 @@ const AuthState = props => {
   const loadUser = () => {};
   const login = () => {};
   const logout = () => {};
-  const clearErrors = () => {};
+  const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
   return (
     <AuthContext.Provider
       value={{
         token: state.token,
-        isAuthenticated: state.token,
-        loading: state.token,
-        user: state.token,
-        error: state.token,
+        isAuthenticated: state.isAuthenticated,
+        loading: state.loading,
+        user: state.user,
+        error: state.error,
         register,
         loadUser,
         login,
