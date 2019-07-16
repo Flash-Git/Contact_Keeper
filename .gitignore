@@ -61,9 +61,11 @@ typings/
 .next
 
 default.json
+production.json
 
 # production
 build/
+
 
 # misc
 .DS_Store
