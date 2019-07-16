@@ -1,11 +1,14 @@
 import React, { useState, useContext } from "react";
 
 import AlertContext from "../../context/alert/AlertContext";
+import AuthContext from "../../context/auth/AuthContext";
 
 const Register = () => {
   const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
 
   const { setAlert } = alertContext;
+  const { register } = authContext;
 
   const [user, setUser] = useState({
     name: "",
@@ -27,7 +30,7 @@ const Register = () => {
     } else if (password.length < 7) {
       setAlert("Passwords must be at least 7 characters long", "danger");
     } else {
-      console.log("Registered");
+      register({ name, email, password });
     }
   };
 
