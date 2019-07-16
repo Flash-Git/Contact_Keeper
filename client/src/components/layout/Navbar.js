@@ -27,6 +27,8 @@ const Navbar = ({ title, icon }) => {
       </li>
       <li>
         <a onClick={onLogout} href="#!">
+          <FontAwesomeIcon icon={["fas", "sign-out-alt"]} />
+          &nbsp;
           <span className="hide-sm">Logout</span>
         </a>
       </li>
@@ -35,9 +37,6 @@ const Navbar = ({ title, icon }) => {
 
   const guestLinks = (
     <Fragment>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
       <li>
         <Link to="/about">About</Link>
       </li>
@@ -64,7 +63,7 @@ const Navbar = ({ title, icon }) => {
 
 Navbar.defaultProps = {
   title: "Contact Keeper",
-  icon: ["fab", "github"]
+  icon: ["fas", "file-contract"]
 };
 
 Navbar.propTypes = {
