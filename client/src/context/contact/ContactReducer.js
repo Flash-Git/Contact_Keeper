@@ -36,7 +36,7 @@ export default (state, action) => {
       action.payload.id = action.payload._id;
       return {
         ...state,
-        contacts: [...state.contacts, action.payload],
+        contacts: [action.payload, ...state.contacts],
         loading: false
       };
     case UPDATE_CONTACT:
