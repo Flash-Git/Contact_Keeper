@@ -54,9 +54,15 @@ router.post(
         }
       };
 
+      let jwtSecret;
+      if (process.env.NODE_ENV == "production") {
+        jwtSecret = process.env.JWT_SECRET;
+      } else {
+        jwtSecret = config.get("jwtSecret");
+      }
       jwt.sign(
         payload,
-        config.get("jwtSecret"),
+        jwtSecret,
         {
           expiresIn: 3600
         },
