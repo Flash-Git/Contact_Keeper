@@ -24,8 +24,10 @@ const Register = () => {
       setAlert("Please enter all fields", "danger");
     } else if (password !== password2) {
       setAlert("Passwords do not match", "danger");
+    } else if (password.length < 7) {
+      setAlert("Passwords must be at least 7 characters long", "danger");
     } else {
-      console.log("Register");
+      console.log("Registered");
     }
   };
 
@@ -50,6 +52,7 @@ const Register = () => {
             name="password"
             value={password}
             onChange={onChange}
+            // minLength="7"
           />
         </div>
         <div className="form-group">
@@ -59,6 +62,7 @@ const Register = () => {
             name="password2"
             value={password2}
             onChange={onChange}
+            // minLength="7"
           />
         </div>
         <input
