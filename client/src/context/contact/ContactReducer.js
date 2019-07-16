@@ -26,8 +26,11 @@ export default (state, action) => {
     case CLEAR_CONTACTS:
       return {
         ...state,
-        contacts: [...state.contacts, action.payload],
-        loading: false
+        contacts: null,
+        currentContact: null,
+        filtered: null,
+        error: null,
+        loading: false //TODO
       };
     case ADD_CONTACT:
       action.payload.id = action.payload._id;

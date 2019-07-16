@@ -40,13 +40,8 @@ const ContactState = props => {
     }
   };
 
-  const clearContacts = async () => {
-    try {
-      const res = await axios.post("/api/contacts");
-      dispatch({ type: GET_CONTACTS, payload: res.data });
-    } catch (e) {
-      dispatch({ type: CONTACT_ERROR, payload: e.response.msg });
-    }
+  const clearContacts = () => {
+    dispatch({ type: CLEAR_CONTACTS });
   };
 
   const addContact = async contact => {
