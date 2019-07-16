@@ -28,7 +28,7 @@ const ContactForm = () => {
     } else {
       setContact(emptyContact);
     }
-  }, [currentContact, emptyContact]);
+  }, [currentContact]);
 
   //Input
   const onChange = e =>
