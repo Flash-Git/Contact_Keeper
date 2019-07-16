@@ -44,7 +44,16 @@ const AuthState = props => {
     }
   };
 
-  const loadUser = () => {};
+  const loadUser = async () => {
+    //global headers
+    try {
+      const res = await axios.get("/api/auth");
+      dispatch({ type: USER_LOADED, payload: res.data });
+    } catch (e) {
+      dispatch({ type: AUTH_ERROR });
+    }
+  };
+
   const login = () => {};
   const logout = () => {};
   const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
