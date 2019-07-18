@@ -60,7 +60,7 @@ router.post(
       } else {
         jwtSecret = config.get("jwtSecret");
       }
-      jwt.sign(
+      jwt.sign(//TODO test error handling
         payload,
         jwtSecret,
         {
