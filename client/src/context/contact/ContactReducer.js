@@ -8,7 +8,8 @@ import {
   SET_CURRENT,
   CLEAR_CURRENT,
   FILTER_CONTACTS,
-  CLEAR_FILTER
+  CLEAR_FILTER,
+  CLEAR_ERRORS
 } from "../types";
 
 export default (state, action) => {
@@ -87,10 +88,16 @@ export default (state, action) => {
         filtered: null
       };
     case CONTACT_ERROR:
+      console.log(action.payload);
       return {
         ...state,
         error: action.payload,
         loading: false
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null
       };
     default:
       return state;
