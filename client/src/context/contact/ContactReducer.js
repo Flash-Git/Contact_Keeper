@@ -88,7 +88,6 @@ export default (state, action) => {
         filtered: null
       };
     case CONTACT_ERROR:
-      console.log(action.payload);
       return {
         ...state,
         error: action.payload,
