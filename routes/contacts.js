@@ -39,12 +39,17 @@ router.post(
     handleErrors(req, res);
 
     const { name, email, phone, type } = req.body;
-    try {
+
+    //Build contact object
+    const contactFields = {};
+    if (name) contactFields.name = name;
+    if (email) contactFields.email = email;
+    if (phone) contactFields.phone = phone;
+    if (type) contactFields.type = type;
+
+    try {  
       const newContact = new Contact({
-        name,
-        email,
-        phone,
-        type,
+        ...contactFields,
         user: req.user.id
       });
       const contact = await newContact.save();
