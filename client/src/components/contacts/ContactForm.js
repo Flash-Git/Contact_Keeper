@@ -30,7 +30,7 @@ const ContactForm = () => {
 
   useEffect(() => {
     if (currentContact !== null) {
-      setContact(currentContact);
+      setContact({ ...emptyContact, ...currentContact });
     } else {
       setContact(emptyContact);
     }
@@ -61,6 +61,7 @@ const ContactForm = () => {
   };
 
   const clearAll = e => {
+    setContact(emptyContact);
     clearCurrentContact();
   };
 
@@ -92,23 +93,26 @@ const ContactForm = () => {
         onChange={onChange}
       />
       <h4>Contact Type</h4>
-      <label><input
-        type="radio"
-        name="type"
-        value="personal"
-        checked={type === "personal"}
-        onChange={onChange}
-      />
-      &nbsp;Personal&nbsp;&nbsp;&nbsp;
+      <label>
+        <input
+          type="radio"
+          name="type"
+          value="personal"
+          checked={type === "personal"}
+          onChange={onChange}
+        />
+        &nbsp;Personal&nbsp;&nbsp;&nbsp;
       </label>
-      <label><input
-        type="radio"
-        name="type"
-        value="professional"
-        checked={type === "professional"}
-        onChange={onChange}
-      />
-      &nbsp;Professional</label>
+      <label>
+        <input
+          type="radio"
+          name="type"
+          value="professional"
+          checked={type === "professional"}
+          onChange={onChange}
+        />
+        &nbsp;Professional
+      </label>
       <div>
         <input
           type="submit"
