@@ -24,7 +24,6 @@ export default (state, action) => {
         }),
         loading: false
       };
-
     case CLEAR_CONTACTS:
       return {
         ...state,
@@ -32,7 +31,7 @@ export default (state, action) => {
         currentContact: null,
         filtered: null,
         error: null,
-        loading: false //TODO
+        loading: false
       };
     case ADD_CONTACT:
       action.payload.id = action.payload._id;
