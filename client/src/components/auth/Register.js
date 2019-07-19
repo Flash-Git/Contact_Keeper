@@ -42,6 +42,14 @@ const Register = props => {
     } else if (!email.includes("@")) {
       setAlert("Emails must be valid", "danger");
     } else {
+      if (password.length > 72)
+        setAlert(
+          `The server will only use the first 72 characters of your ${
+            password.length
+          } character password`,
+          "dark",
+          30000
+        );
       register({ name, email, password });
     }
   };
