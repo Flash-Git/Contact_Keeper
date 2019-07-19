@@ -79,7 +79,7 @@ const ContactForm = () => {
         onChange={onChange}
       />
       <input
-        type="email"
+        type="text"
         placeholder="Email"
         name="email"
         value={email}

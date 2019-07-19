@@ -39,6 +39,8 @@ const Register = props => {
       setAlert("Passwords do not match", "danger");
     } else if (password.length < 7) {
       setAlert("Passwords must be at least 7 characters long", "danger");
+    } else if (!email.includes("@")) {
+      setAlert("Emails must be valid", "danger");
     } else {
       register({ name, email, password });
     }
@@ -56,7 +58,7 @@ const Register = props => {
         </div>
         <div className="form-group">
           <label htmlFor="name">Email Address</label>
-          <input type="email" name="email" value={email} onChange={onChange} />
+          <input type="text" name="email" value={email} onChange={onChange} />
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
