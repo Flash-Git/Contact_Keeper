@@ -22,8 +22,7 @@ router.post(
       "password",
       "Please enter a password with 7 or more characters"
     ).isLength({
-      min: 7,
-      max: 72
+      min: 7
     })
   ],
   async (req, res) => {
