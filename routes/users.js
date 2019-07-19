@@ -26,7 +26,7 @@ router.post(
     })
   ],
   async (req, res) => {
-    handleErrors(req, res);
+    if (handleErrors(req, res)) return;
 
     const { name, email, password } = req.body;
 
@@ -34,7 +34,7 @@ router.post(
       let user = await User.findOne({ email });
 
       if (user) {
-        return res.status(400).json({ errors: [{msg: "User already exists"}] });
+        return res.status(400).send({ msg: "User already exists" });
       }
       user = new User({
         name,
@@ -71,7 +71,7 @@ router.post(
       );
     } catch (e) {
       console.error(e.message);
-      res.status(500).send("Server Error");
+      res.status(500).send({ msg: "Server Error" });
     }
   }
 );

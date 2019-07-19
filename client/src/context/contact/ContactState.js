@@ -37,14 +37,7 @@ const ContactState = props => {
       const res = await axios.get("/api/contacts");
       dispatch({ type: GET_CONTACTS, payload: res.data });
     } catch (e) {
-      if (e.response.data) {
-        e.response.data.errors.map(e =>
-          dispatch({ type: CONTACT_ERROR, payload: e.msg })
-        );
-      } else {
-        console.log(e.response.data);
-        dispatch({ type: CONTACT_ERROR, payload: e.msg });
-      }
+      dispatch({ type: CONTACT_ERROR, payload: e.response.data.msg });
     }
   };
 
@@ -63,14 +56,7 @@ const ContactState = props => {
       const res = await axios.post("/api/contacts", contact, config);
       dispatch({ type: ADD_CONTACT, payload: res.data });
     } catch (e) {
-      if (e.response.data) {
-        e.response.data.errors.map(e =>
-          dispatch({ type: CONTACT_ERROR, payload: e.msg })
-        );
-      } else {
-        console.log(e.response.data);
-        dispatch({ type: CONTACT_ERROR, payload: e.msg });
-      }
+      dispatch({ type: CONTACT_ERROR, payload: e.response.data.msg });
     }
   };
 
@@ -89,14 +75,7 @@ const ContactState = props => {
       );
       dispatch({ type: UPDATE_CONTACT, payload: res.data });
     } catch (e) {
-      if (e.response.data) {
-        e.response.data.errors.map(e =>
-          dispatch({ type: CONTACT_ERROR, payload: e.msg })
-        );
-      } else {
-        console.log(e.response.data);
-        dispatch({ type: CONTACT_ERROR, payload: e.msg });
-      }
+      dispatch({ type: CONTACT_ERROR, payload: e.response.data.msg });
     }
   };
 
@@ -105,14 +84,7 @@ const ContactState = props => {
       await axios.delete(`/api/contacts/${id}`);
       dispatch({ type: DELETE_CONTACT, payload: id });
     } catch (e) {
-      if (e.response.data) {
-        e.response.data.errors.map(e =>
-          dispatch({ type: CONTACT_ERROR, payload: e.msg })
-        );
-      } else {
-        console.log(e.response.data);
-        dispatch({ type: CONTACT_ERROR, payload: e.msg });
-      }
+      dispatch({ type: CONTACT_ERROR, payload: e.response.data.msg });
     }
 
     dispatch({ type: DELETE_CONTACT, payload: id });

@@ -41,14 +41,7 @@ const AuthState = props => {
       dispatch({ type: REGISTER_SUCCESS, payload: res.data });
       loadUser();
     } catch (e) {
-      if (e.response.data) {
-        e.response.data.errors.map(e =>
-          dispatch({ type: REGISTER_FAIL, payload: e.msg })
-        );
-      } else {
-        console.log(e.response.data);
-        dispatch({ type: REGISTER_FAIL, payload: e.msg });
-      }
+      dispatch({ type: REGISTER_FAIL, payload: e.response.data.msg });
     }
   };
 
@@ -74,14 +67,7 @@ const AuthState = props => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
       loadUser();
     } catch (e) {
-      if (e.response.data) {
-        e.response.data.errors.map(e =>
-          dispatch({ type: LOGIN_FAIL, payload: e.msg })
-        );
-      } else {
-        console.log(e.response.data);
-        dispatch({ type: LOGIN_FAIL, payload: e.msg });
-      }
+      dispatch({ type: LOGIN_FAIL, payload: e.response.data.msg });
     }
   };
 

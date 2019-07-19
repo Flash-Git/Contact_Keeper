@@ -18,7 +18,7 @@ router.get("/", auth, async (req, res) => {
     res.json(contacts);
   } catch (e) {
     console.error(e.message);
-    res.status(500).send("Server Error");
+    res.status(500).send({ msg: "Server Error" });
   }
 });
 
@@ -47,7 +47,7 @@ router.post(
     if (phone) contactFields.phone = phone;
     if (type) contactFields.type = type;
 
-    try {  
+    try {
       const newContact = new Contact({
         ...contactFields,
         user: req.user.id
@@ -56,7 +56,7 @@ router.post(
       res.json(contact);
     } catch (e) {
       console.error(e.message);
-      res.status(500).send("Server Error");
+      res.status(500).send({ msg: "Server Error" });
     }
   }
 );
@@ -77,11 +77,11 @@ router.put("/:id", auth, async (req, res) => {
   try {
     let contact = await Contact.findById(req.params.id);
 
-    if (!contact) return res.status(404).json({ msg: "Contact not found" });
+    if (!contact) return res.status(404).send({ msg: "Contact not found" });
 
     //Validate that user owns contact
     if (contact.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: "Unauthorized request" });
+      return res.status(401).send({ msg: "Unauthorized request" });
     }
 
     contact = await Contact.findByIdAndUpdate(
@@ -97,7 +97,7 @@ router.put("/:id", auth, async (req, res) => {
     res.json(contact);
   } catch (e) {
     console.error(e.message);
-    res.status(500).send("Server Error");
+    res.status(500).send({ msg: "Server Error" });
   }
 });
 
@@ -108,19 +108,19 @@ router.delete("/:id", auth, async (req, res) => {
   try {
     let contact = await Contact.findById(req.params.id);
 
-    if (!contact) return res.status(404).json({ msg: "Contact not found" });
+    if (!contact) return res.status(404).send({ msg: "Contact not found" });
 
     //Validate that user owns contact
     if (contact.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: "Unauthorized request" });
+      return res.status(401).send({ msg: "Unauthorized request" });
     }
 
     await Contact.findByIdAndRemove(req.params.id);
 
-    res.json({ msg: "Contact removed" });
+    res.send({ msg: "Contact removed" });
   } catch (e) {
     console.error(e.message);
-    res.status(500).send("Server Error");
+    res.status(500).send({ msg: "Server Error" });
   }
 });
 
