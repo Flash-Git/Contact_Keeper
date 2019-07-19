@@ -32,7 +32,7 @@ router.post(
     check("password", "Please enter your password").exists()
   ],
   async (req, res) => {
-    handleErrors(req, res);
+    if (handleErrors(req, res)) return;
 
     const { email, password } = req.body;
 
@@ -73,7 +73,7 @@ router.post(
         }
       );
     } catch (e) {
-      console.error(err.message);
+      console.error(e.message);
       res.status(500).send({ msg: "Server Error" });
     }
   }

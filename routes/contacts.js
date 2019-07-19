@@ -36,7 +36,7 @@ router.post(
     ]
   ],
   async (req, res) => {
-    handleErrors(req, res);
+    if (handleErrors(req, res)) return;
 
     const { name, email, phone, type } = req.body;
 
