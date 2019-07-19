@@ -76,9 +76,9 @@ export default (state, action) => {
         filtered: state.contacts.filter(contact => {
           const regex = new RegExp(`${action.payload}`, "gi");
           return (
-            contact.name.match(regex) ||
-            contact.email.match(regex) ||
-            contact.phone.match(regex)
+            (contact.name && contact.name.match(regex)) ||
+            (contact.email && contact.email.match(regex)) ||
+            (contact.phone && contact.phone.match(regex))
           );
         })
       };
