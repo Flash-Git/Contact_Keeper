@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -42,19 +42,17 @@ const App = () => (
     <ContactState>
       <AlertState>
         <Router>
-          <Fragment>
-            <Navbar />
-            <div className="container">
-              <Alerts />
-              <Switch>
-                <PrivateRoute exact path="/" component={Home} />
-                <Route exact path="/about" component={About} />
-                <Route exact path="/register" component={Register} />
-                <Route exact path="/login" component={Login} />
-                <Route component={NotFound} />
-              </Switch>
-            </div>
-          </Fragment>
+          <Navbar />
+          <div className="container">
+            <Alerts />
+            <Switch>
+              <PrivateRoute exact path="/" component={Home} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+              <Route component={NotFound} />
+            </Switch>
+          </div>
         </Router>
       </AlertState>
     </ContactState>
